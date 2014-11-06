@@ -6,15 +6,47 @@
 
 package de.gyhoevents.inventarserver.objects;
 
+import de.gyhoevents.inventarserver.database.tables.Benutzer;
+
 /**
  *
  * @author Programmieren
  */
 public class Client {
-   private String ip;
-   private int port;
+   private final String ip;
+   private final int port;
    
    private boolean eingeloggt;
+   private Benutzer benutzer;
+
+    public Client(String ip, int port) {
+        this.ip = ip;
+        this.port = port;
+    }
+
+    public String getIp() {
+        return ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public boolean isEingeloggt() {
+        return eingeloggt;
+    }
+
+    public void setEingeloggt(boolean eingeloggt) {
+        this.eingeloggt = eingeloggt;
+    }
+
+    public Benutzer getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer benutzer) {
+        this.benutzer = benutzer;
+    }
    
    
     

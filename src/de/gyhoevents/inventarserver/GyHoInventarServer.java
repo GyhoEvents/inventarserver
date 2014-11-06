@@ -20,10 +20,17 @@ public class GyHoInventarServer {
     //Datenbank
     private EbeanServer datenbank;
     private Config config;
-
+    private static GyHoInventarServer instance;
+    private UserManager usermanager;
+    private InventarServer server;
+    
     public GyHoInventarServer() {
+        instance =this;
         config = new Config();
         verbindeDatenbank();
+        usermanager = new UserManager();
+        
+        server = new InventarServer(12345);
     }
     
     private void verbindeDatenbank() {
@@ -49,13 +56,25 @@ public class GyHoInventarServer {
         c.setDefaultServer(false);
         c.setRegister(true);
 
-        //c.addPackage("tictactoe.server.database.tables");
+        c.addPackage("de.gyhoevents.inventarserver.database.tables");
 
         datenbank = EbeanServerFactory.create(c);
 
     }
 
+    public static GyHoInventarServer getInstance() {
+        return instance;
+    }
+
+    public UserManager getUsermanager() {
+        return usermanager;
+    }
+
     public EbeanServer getDatenbank() {
         return datenbank;
+    }
+
+    public InventarServer getServer() {
+        return server;
     }
 }
